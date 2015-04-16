@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config 
+PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" 
+"http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<form-beans type="org.apache.struts.action.ActionFormBean">
+		<form-bean name="loginForm" type="com.javaquarium.beans.web.LoginVO" />
+		<form-bean name="AjoutForm" type="com.javaquarium.beans.web.PoissonVO" />
+		<form-bean name="RegisterForm" type="com.javaquarium.beans.web.UserVO" />
+	</form-beans>
+	<action-mappings type="org.apache.struts.action.ActionMapping">
+		<action path="/listerEspece" type="com.javaquarium.action.ListerEspeceAction">
+			<forward name="success" path="/jsp/UC01_especes.jsp" />
+		</action>
+		<action path="/login" input="/jsp/UC00_login.jsp" scope="request"
+			name="loginForm" type="com.javaquarium.action.LoginAction">
+			<forward name="success" path="/listerEspece.do" redirect="true" />
+			<forward name="form_error" path="/jsp/UC00_login.jsp"
+				redirect="true" />
+		</action>
+		<action path="/ajout" input="/jsp/UC02_ajout.jsp" scope="request"
+			name="AjoutForm" type="com.javaquarium.action.AjoutAction">
+			<forward name="success" path="/listerEspece.do" redirect="true" />
+			<forward name="form_error" path="/jsp/UC02_ajout.jsp"
+				redirect="true" />
+		</action>
+		<action path="/register" input="/jsp/UC03_register.jsp" scope="request"
+			name="RegisterForm" type="com.javaquarium.action.RegisterAction">
+			<forward name="success" path="/jsp/UC00_login.jsp" redirect="true" />
+			<forward name="form_error" path="/jsp/UC03_register.jsp"
+				redirect="true" />
+		</action>
+	</action-mappings>
+	<message-resources parameter="ApplicationResources" />
+</struts-config>
