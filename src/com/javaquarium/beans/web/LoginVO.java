@@ -61,30 +61,25 @@ public class LoginVO extends ActionForm {
 	 * .ActionMapping, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public ActionErrors validate(final ActionMapping mapping, 
-		final HttpServletRequest request) {
+	public ActionErrors validate(final ActionMapping mapping, final HttpServletRequest request) {
 		final ActionErrors errors = new ActionErrors();
 
 		Properties properties = new Properties();
 		String propertiesFileName = "ApplicationResources.properties";
 
-		InputStream inputStream = getClass().getClassLoader()
-				.getResourceAsStream(propertiesFileName);
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertiesFileName);
 		try {
 			properties.load(inputStream);
 		} catch (IOException e) {
-			System.err.println("property file " 
-		+ propertiesFileName + "not found in the classpath");
+			System.err.println("property file " + propertiesFileName + "not found in the classpath");
 		}
 		if (StringUtils.isEmpty(getLogin())) {
 			errors.add("login",
-					new ActionMessage("errors.field.notFound", 
-						properties.get("message.login.input.name.login")));
+					new ActionMessage("errors.field.notFound", properties.get("message.login.input.name.login")));
 		}
 		if (StringUtils.isEmpty(getPassword())) {
 			errors.add("password",
-					new ActionMessage("errors.field.notFound", 
-					properties.get("message.login.input.name.password")));
+					new ActionMessage("errors.field.notFound", properties.get("message.login.input.name.password")));
 		}
 		return errors;
 	}

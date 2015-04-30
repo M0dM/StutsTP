@@ -4,25 +4,32 @@ import java.util.List;
 
 import com.javaquarium.beans.data.UserPoissonDO;
 
+/**
+ * 
+ * @author Benoit Brayer
+ *
+ */
 public interface IUserPoissonDAO {
 
 	/**
-	 * 
-	 * @param up
+	 * @param up the userPoissonDo object needed to be persisted in database
 	 */
-	void addUserPoisson(UserPoissonDO up);
-	
+	void addUserPoisson(final UserPoissonDO up);
+
 	/**
-	 * 
-	 * @return
+	 * @return all the userPoisson values for the specified user
 	 */
-	List<UserPoissonDO> getUserAllUserPoisson(String login);
-	
+	List<UserPoissonDO> getUserAllUserPoisson(final String login);
+
 	/**
-	 * 
-	 * @param login
-	 * @param espece
-	 * @return
+	 * @param login the user login
+	 * @param espece the poisson espece
+	 * @return the number of poisson of this espece owned by the user
 	 */
-	UserPoissonDO getUserPoisson(String login, String espece);
+	UserPoissonDO getUserPoisson(final String login, final String espece);
+
+	/**
+	 * @param login the user login
+	 */
+	void removeAllUserPoisson(final String login);
 }

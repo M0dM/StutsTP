@@ -9,19 +9,12 @@ PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
 		<form-bean name="RegisterForm" type="com.javaquarium.beans.web.UserVO" />
 	</form-beans>
 	<action-mappings type="org.apache.struts.action.ActionMapping">
-		<action path="/listerEspece" type="com.javaquarium.action.ListerEspeceAction">
-			<forward name="success" path="/jsp/UC01_especes.jsp" />
-		</action>
 		<action path="/login" input="/jsp/UC00_login.jsp" scope="request"
 			name="loginForm" type="com.javaquarium.action.LoginAction">
 			<forward name="success" path="/listerEspece.do" redirect="true" />
 			<forward name="form_error" path="/jsp/UC00_login.jsp"
 				redirect="true" />
-		</action>
-		<action path="/ajout" input="/jsp/UC02_ajout.jsp" scope="request"
-			name="AjoutForm" type="com.javaquarium.action.AjoutAction">
-			<forward name="success" path="/listerEspece.do" redirect="true" />
-			<forward name="form_error" path="/jsp/UC02_ajout.jsp"
+			<forward name="user_already_connected" path="/listerEspece.do"
 				redirect="true" />
 		</action>
 		<action path="/register" input="/jsp/UC03_register.jsp" scope="request"
@@ -29,7 +22,49 @@ PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
 			<forward name="success" path="/jsp/UC00_login.jsp" redirect="true" />
 			<forward name="form_error" path="/jsp/UC03_register.jsp"
 				redirect="true" />
+			<forward name="user_already_connected" path="/listerEspece.do"
+				redirect="true" />
 		</action>
+		<action path="/listerEspece" type="com.javaquarium.action.ListerEspeceAction">
+			<forward name="success" path="/jsp/UC01_especes.jsp" />
+			<forward name="disconnected_user_error" path="/jsp/UC00_login.jsp"
+				redirect="true" />
+		</action>
+		<action path="/ajout" input="/jsp/UC02_ajout.jsp" scope="request"
+			name="AjoutForm" type="com.javaquarium.action.AjoutAction">
+			<forward name="success" path="/listerEspece.do" redirect="true" />
+			<forward name="form_error" path="/jsp/UC02_ajout.jsp"
+				redirect="true" />
+			<forward name="disconnected_user_error" path="/jsp/UC00_login.jsp"
+				redirect="true" />
+		</action>
+		<action path="/ajoutUserPoisson" scope="request"
+      type="com.javaquarium.action.AjoutUserPoissonAction">
+      <forward name="success" path="/listerEspece.do" redirect="true" />
+      <forward name="disconnected_user_error" path="/jsp/UC00_login.jsp"
+        redirect="true" />
+    </action>
+    <action path="/enleverUserPoisson" scope="request"
+      type="com.javaquarium.action.EnleverUserPoissonAction">
+      <forward name="success" path="/listerEspece.do" redirect="true" />
+      <forward name="disconnected_user_error" path="/jsp/UC00_login.jsp"
+        redirect="true" />
+    </action>
+    <action path="/viderUserPoisson" scope="request"
+      type="com.javaquarium.action.ViderUserPoissonAction">
+      <forward name="success" path="/listerEspece.do" redirect="true" />
+      <forward name="disconnected_user_error" path="/jsp/UC00_login.jsp"
+        redirect="true" />
+    </action>
+    <action path="/sauvegarderUserPoisson" scope="request"
+      type="com.javaquarium.action.SauvegarderUserPoissonAction">
+      <forward name="success" path="/listerEspece.do" redirect="true" />
+      <forward name="disconnected_user_error" path="/jsp/UC00_login.jsp"
+        redirect="true" />
+    </action>
 	</action-mappings>
+	<controller>
+    <set-property property="processorClass" value="com.javaquarium.processor.CustomRequestProcessor"></set-property>
+  </controller>
 	<message-resources parameter="ApplicationResources" />
 </struts-config>

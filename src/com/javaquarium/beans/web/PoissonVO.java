@@ -125,49 +125,42 @@ public class PoissonVO extends ActionForm {
 	 * .ActionMapping, javax.servlet.http.HttpServletRequest)
 	 */
 	@Override
-	public ActionErrors validate(final ActionMapping mapping, 
-		final HttpServletRequest request) {
+	public ActionErrors validate(final ActionMapping mapping, final HttpServletRequest request) {
 		final ActionErrors errors = new ActionErrors();
 
 		Properties properties = new Properties();
 		String propertiesFileName = "ApplicationResources.properties";
 
-		InputStream inputStream = getClass().getClassLoader()
-				.getResourceAsStream(propertiesFileName);
+		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(propertiesFileName);
 		try {
 			properties.load(inputStream);
 		} catch (IOException e) {
-			System.err.println("property file " 
-		+ propertiesFileName + "not found in the classpath");
+			System.err.println("property file " + propertiesFileName + "not found in the classpath");
 		}
 
 		if (StringUtils.isEmpty(getEspece())) {
 			errors.add("nom",
-					new ActionMessage("errors.field.notFound", 
-						properties.get("message.ajout.input.title.name")));
+					new ActionMessage("errors.field.notFound", properties.get("message.ajout.input.title.name")));
 		}
 		if (StringUtils.isEmpty(getPrix())) {
 			errors.add("prix",
-					new ActionMessage("errors.field.notFound", 
-						properties.get("message.ajout.input.title.price")));
+					new ActionMessage("errors.field.notFound", properties.get("message.ajout.input.title.price")));
 		}
 		if (StringUtils.isEmpty(getDimension())) {
 			errors.add("dimension",
-					new ActionMessage("errors.field.notFound", 
-					properties.get("message.ajout.input.title.dimensions")));
+					new ActionMessage("errors.field.notFound", properties.get("message.ajout.input.title.dimensions")));
 		}
 		if (!getDimension().matches("((\\d)+(\\.(\\d)+){0,1})x((\\d)+(\\.(\\d)+){0,1})")) {
 			errors.add(
 					"dimension",
-					new ActionMessage("errors.field.dimension.format.not.valid",
-					properties.get("message.ajout.input.title.dimensions")));
+					new ActionMessage("errors.field.dimension.format.not.valid", properties
+							.get("message.ajout.input.title.dimensions")));
 		}
 		try {
 			Integer.parseInt(getPrix());
 		} catch (NumberFormatException e) {
 			errors.add("prix",
-					new ActionMessage("errors.field.notInteger",
-						properties.get("message.ajout.input.title.price")));
+					new ActionMessage("errors.field.notInteger", properties.get("message.ajout.input.title.price")));
 		}
 
 		return errors;

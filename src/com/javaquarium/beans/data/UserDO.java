@@ -1,13 +1,10 @@
 package com.javaquarium.beans.data;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -29,9 +26,6 @@ public class UserDO {
 
 	@Column(name = "c_password_hash", nullable = true)
 	private String passwordHash;
-
-	@OneToMany( targetEntity=UserPoissonDO.class )
-    private List<UserPoissonDO> userPoissons;
 	
 	/**
 	 * @return the id
@@ -77,17 +71,4 @@ public class UserDO {
 		this.passwordHash = hash;
 	}
 
-	/**
-	 * @return the userPoissons
-	 */
-	public List<UserPoissonDO> getUserPoissons() {
-		return userPoissons;
-	}
-
-	/**
-	 * @param userPoissons the userPoissons to set
-	 */
-	public void setUserPoissons(List<UserPoissonDO> userPoissons) {
-		this.userPoissons = userPoissons;
-	}
 }

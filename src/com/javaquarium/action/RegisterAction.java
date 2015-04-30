@@ -36,9 +36,9 @@ public class RegisterAction extends Action {
 			final ActionForm form, final HttpServletRequest req,
 			final HttpServletResponse res) {
 
-		ActionForward forward = mapping.findForward(FW_SUCCESS);
-		IUserService userService = new UserService();
+		String forward = FW_SUCCESS;
 		
+		IUserService userService = new UserService();
 		UserVO oldUser = userService.getUser(((UserVO)form).getLogin());
 		
 		if (oldUser == null) {
@@ -48,9 +48,9 @@ public class RegisterAction extends Action {
 			errors.add("errors.field.login.already.exist", 
 					new ActionMessage("errors.field.login.already.exist"));
 			saveErrors(req, errors);
-			forward = mapping.findForward(FW_FORM_ERROR);
+			forward = FW_FORM_ERROR;
 		}
-		return forward;
+		return mapping.findForward(forward);
 	}
 
 }

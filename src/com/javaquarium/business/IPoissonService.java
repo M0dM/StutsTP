@@ -30,12 +30,14 @@ public interface IPoissonService {
 	PoissonVO map(PoissonDO poisson);
 
 	/**
-	 * @param poisson the poisson needed to be registred into the database
+	 * @param poisson
+	 *            the poisson needed to be registred into the database
 	 */
 	void addPoisson(PoissonVO poisson);
 
 	/**
-	 * @param espece the poissonDO name
+	 * @param espece
+	 *            the poissonDO name
 	 * @return the corresponding poissonVO object
 	 */
 	PoissonVO getPoisson(String espece);
