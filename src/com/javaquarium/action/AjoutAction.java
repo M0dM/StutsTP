@@ -35,8 +35,8 @@ public class AjoutAction extends Action {
 	public ActionForward execute(final ActionMapping mapping, 
 			final ActionForm form, final HttpServletRequest req,
 			final HttpServletResponse res) {
-
-		ActionForward forward = mapping.findForward(FW_SUCCESS);
+		
+		String forward = FW_SUCCESS;
 		IPoissonService poissonService = new PoissonService();
 
 		PoissonVO oldPoisson = poissonService.getPoisson(((PoissonVO) form).getEspece());
@@ -48,9 +48,10 @@ public class AjoutAction extends Action {
 			errors.add("errors.filed.poisson.already.exist", 
 					new ActionMessage("errors.filed.poisson.already.exist"));
 			saveErrors(req, errors);
-			forward = mapping.findForward(FW_FORM_ERROR);
+			forward = FW_FORM_ERROR;
 		}
-		return forward;
+		
+		return mapping.findForward(forward);
 	}
 
 }

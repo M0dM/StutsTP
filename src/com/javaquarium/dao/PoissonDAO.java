@@ -22,7 +22,7 @@ public class PoissonDAO implements IPoissonDAO {
 		Session s = HibernateUtils.getSession();
 		try {
 			Query q = s.createQuery("from PoissonDO");
-			return  (List<PoissonDO>) q.list();
+			return (List<PoissonDO>) q.list();
 		} finally {
 			s.close();
 		}

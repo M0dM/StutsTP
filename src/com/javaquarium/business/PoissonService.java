@@ -18,8 +18,7 @@ public class PoissonService implements IPoissonService {
 	private IPoissonDAO dao;
 
 	/**
-	 * Poisson service constructor.
-	 * Initialization of the dao.
+	 * Poisson service constructor. Initialization of the dao.
 	 */
 	public PoissonService() {
 		dao = new PoissonDAO();

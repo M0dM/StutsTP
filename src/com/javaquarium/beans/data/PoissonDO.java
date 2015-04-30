@@ -1,13 +1,10 @@
 package com.javaquarium.beans.data;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -42,9 +39,6 @@ public class PoissonDO {
 	@Column(name = "c_nom", nullable = true)
 	private String nom;
 	
-	@OneToMany( targetEntity=UserPoissonDO.class )
-    private List<UserPoissonDO> userPoissons;
-
 	/**
 	 * @return the id
 	 */
@@ -68,8 +62,7 @@ public class PoissonDO {
 	}
 
 	/**
-	 * @param title
-	 *            the title to set
+	 * @param couleur the poisson color
 	 */
 	public void setCouleur(String couleur) {
 		this.couleur = couleur;
@@ -148,20 +141,6 @@ public class PoissonDO {
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	/**
-	 * @return the userPoissons
-	 */
-	public List<UserPoissonDO> getUserPoissons() {
-		return userPoissons;
-	}
-
-	/**
-	 * @param userPoissons the userPoissons to set
-	 */
-	public void setUserPoissons(List<UserPoissonDO> userPoissons) {
-		this.userPoissons = userPoissons;
 	}
 
 }

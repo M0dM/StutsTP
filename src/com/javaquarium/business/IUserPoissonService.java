@@ -1,9 +1,8 @@
 package com.javaquarium.business;
 
-import java.util.List;
+import java.util.Map;
 
 import com.javaquarium.beans.data.UserPoissonDO;
-import com.javaquarium.beans.web.UserPoissonVO;
 
 /**
  * Interface of UserPoissonService.
@@ -13,37 +12,34 @@ import com.javaquarium.beans.web.UserPoissonVO;
 public interface IUserPoissonService {
 
 	/**
-	 * 
-	 * @return
+	 * @return the list of user poissons
 	 */
-	List<UserPoissonVO> getUserAllUserPoisson(String login);
+	Map<String, Integer> getUserAllUserPoisson(String login);
 
 	/**
-	 * 
-	 * @param up
-	 * @return
-	 */
-	UserPoissonDO map(UserPoissonVO up);
-
-	/**
-	 * 
-	 * @param up
-	 * @return
-	 */
-	UserPoissonVO map(UserPoissonDO up);
-
-	/**
-	 * 
-	 * @param up
-	 */
-	void addUserPoisson(UserPoissonVO up);
-
-	/**
-	 * 
 	 * @param login
+	 *            the user login
 	 * @param espece
-	 * @return
+	 *            the poisson espece
+	 * @return a UserPoissonDO object retreived from database or null if
+	 *         UserPoisson does not exist
 	 */
-	UserPoissonVO getUserPoisson(String login, String espece);
+	UserPoissonDO getUserPoisson(String login, String espece);
+
+	/**
+	 * @param login
+	 *            the user login
+	 * @param espece
+	 *            the poisson espece
+	 * @param count
+	 *            the number of poisson of this espece own by the user
+	 */
+	void addUserPoisson(String login, String espece, int count);
+
+	/**
+	 * @param sessionUsername
+	 *            the user login of the user needed to empty his aquarium
+	 */
+	void removeAllUserPoisson(String sessionUsername);
 
 }

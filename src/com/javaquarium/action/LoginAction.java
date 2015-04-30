@@ -30,7 +30,7 @@ public class LoginAction extends Action {
 	/**
 	 * The login name of the authenticated user.
 	 */
-	public static final String SESSION_USER = "username";
+	public static final String SESSION_USERNAME = "login";
 
 	/**
 	 * Method called by struct following configuration specified inside the
@@ -41,24 +41,28 @@ public class LoginAction extends Action {
 			final ActionForm form, final HttpServletRequest req,
 			final HttpServletResponse res) {
 
-		ActionForward forward = mapping.findForward(FW_SUCCESS);
+		String forward = FW_SUCCESS;
+
 		IUserService userService = new UserService();
 
 		String login = ((LoginVO) form).getLogin();
 		String password = ((LoginVO) form).getPassword();
 
 		if (userService.validateLogin(login, password)) {
-			req.getSession().setAttribute(SESSION_USER, ((LoginVO) (form)).getLogin());
+			req.getSession()
+			.setAttribute(SESSION_USERNAME, ((LoginVO) (form)).getLogin());
+			req.getSession()
+			.setAttribute(com.javaquarium.action.AjoutUserPoissonAction.SESSION_USER_POISSONS, null);
 		} else {
 			ActionErrors errors = new ActionErrors();
 			errors.add("errors.field.login.incorrect.user_or_password", 
 					new ActionMessage(
 						"errors.field.login.incorrect.user_or_password"));
 			saveErrors(req, errors);
-			forward = mapping.findForward(FW_FORM_ERROR);
+			forward = FW_FORM_ERROR;
 		}
-
-		return forward;
+		
+		return mapping.findForward(forward);
 
 	}
 
